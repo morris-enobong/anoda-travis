@@ -10,3 +10,18 @@ before_install:
     - docker build -t moreno/sample-app -f Dockerfile.dev .
 script:     
     - docker run -e CI=true moreno/sample-app npm run test -- --coverage
+
+
+deploy:
+
+  provider: elasticbeanstalk
+  region: "eu-west-2"
+  app: "docker-test"
+  env: "DockerTest-env"
+  bucket_name: "elasticbeanstalk-eu-west-2-739026747961"
+  bucket_path: "docker-test"
+  on: 
+  branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: 
+    secure: "$AWS_SECRET_KEY"
