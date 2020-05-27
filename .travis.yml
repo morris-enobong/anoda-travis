@@ -11,7 +11,7 @@ before_install:
 script:     
     - docker run -e CI=true moreno/sample-app npm run test -- --coverage
 
-
+deploy:
   provider: elasticbeanstalk
   region: "eu-west-2"
   app: "docker-test"
